@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Tailwind CSS CDN link -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class=" bg-black" background="./pictures/kitchenfront.webp" >   
+    <nav class="bg-red-200 w-screen h-16 fixed top-0 left-0 p-4 flex items-center">
+        <div class="text-red-800 font-bold text-2xl mr-auto">
+            Contact
+        </div>
+        <div class=flex-space-8>
+            <a href="about.html"
+                class="text-black bg-yellow-100 hover:text-blue-500 px-4 m-8 shadow-lg rounded-lg">About</a>
+            <a href="menu.html"
+                class="text-black bg-yellow-100 hover:text-blue-500 px-4 m-8 shadow-lg rounded-lg">Menu</a>
+            <a href="home.html"
+                class="text-black bg-yellow-100 hover:text-blue-500 px-4 m-8 shadow-lg rounded-lg">Home</a>
+        </div>
+        <a href="contact.html"
+            class="text-black bg-yellow-100 hover:text-blue-500 p-2 P shadow-lg rounded-lg ml-auto">Order Online</a>
+    </nav>
+    <div class="w-3/4 h-screen flex flex-col mx-auto">
+    <div id="embedded-map-display" class="border-4 border-blue-500 w-3/4 h-screen mt-20 rounded-xl flex flex-col justify-top
+     mx-auto">
+        <iframe class="w-full h-full" loading="lazy" allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed/v1/place?q=Izu+Animal+Kingdom&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8">
+            >   
+        </iframe>
+    </div>
+        <div
+            class="mt-4 text-center flex flex-col items-center w-3/4 h-1/2 mx-auto text-black">
+            <div class="mt-4 text-center flex flex-col items-center w-full h-1/2 mx-auto  text-black">
+                <h1 class="text-white text-2xl font-bold bg-black bg-opacity-50 p-4 rounded">Contact Us</h1>
+                <p class="text-white text-lg font-bold bg-black bg-opacity-50 p-4 rounded">
+                    Shigure's Kitchen is located inside the Izu Animal Kingdom food court. The exact location can be found on the brochure acquired upon visiting.
+                </p>
+            </div>
+            <div class="flex flex-col items-center w-3/4 h-full mx-auto">
+                <form class="flex flex-col items-center w-full text-black">
+                <input type="text" placeholder="Name" class="border-4 border-black w-3/4 p-2 m-2 mt-4 rounded-lg">
+                <input type="email" placeholder="Email" class="border-4 border-black w-3/4 p-2 m-2 rounded-lg">
+                <textarea placeholder="Message" class="border-4 border-black w-3/4 max-h-16 p-2 m-2 rounded-lg"></textarea>
+                <button type="submit" class="bg-red-500 text-white text-lg h-1/8 w-1/4 p-2 rounded-lg">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="bg-red-50 w-screen h-8 fixed bottom-0 right-0 p-2 flex flex-row items-end justify-end">
+        <div class="flex space-x-4"> <a href="https://izu-animal-kingdom.com/en/">
+                <img class="h-4 w-full object-cover max-w-full rounded-lg" src="./pictures/website.png">
+            </a>
+            <a href="https://x.com/izu_anikin">
+                <img class="h-4 w-full object-cover max-w-full rounded-lg" src="./pictures/twitter.png">
+            </a>
+            <a href="https://www.instagram.com/animalkingdom_official">
+                <img class="h-4 w-full object-cover max-w-full rounded-lg" src="./pictures/instagram.png">
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
