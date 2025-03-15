@@ -1,1 +1,0 @@
-# Shigure's Kitchen
