@@ -1,0 +1,161 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script.js"></script>
+</head>
+<body>
+    <div>
+        Total: $<span id="cart-total"></span>
+    </div>
+    <script>
+        document.getElementById("cart-total").textContent = GetCartTotal();
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Tailwind CSS CDN link -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="script.js"></script>
+</head>
+
+<body class=" bg-red-50">
+    <nav class="bg-red-200 w-screen h-16 fixed top-0 left-0 p-4 flex items-center z-50">
+        <div class="text-red-800 font-bold text-2xl mr-auto">
+            Menu
+        </div>
+        <div class=flex-space-8>
+            <a href="about.html"
+                class="text-black bg-yellow-100 hover:text-blue-500 px-4 m-8 shadow-lg rounded-lg">About</a>
+            <a href="index.html"
+                class="text-black bg-yellow-100 hover:text-blue-500 px-4 m-8 shadow-lg rounded-lg">Home</a>
+            <a href="contact.html"
+                class="text-black bg-yellow-100 hover:text-blue-500 px-4 m-8 shadow-lg rounded-lg">Contact</a>
+            <a href="menu.html"
+                class="text-black bg-yellow-100 hover:text-blue-500 px-4 m-8 shadow-lg rounded-lg">Menu</a>
+        </div>
+        <a href="cart.html" id="cart-link"
+            class="text-black bg-yellow-100 hover:text-blue-500 p-2 P shadow-lg rounded-lg ml-auto">Cart</a>
+    </nav>
+    <div class="flex flex-row mt-20">
+        <div id="cartDisplay" class="flex flex-col w-2/3 mr-auto h-full p-4 space-y-4">
+            <script>
+                function UpdateCartDisplay() {
+                    const cartDisplay = document.getElementById("cartDisplay");
+                    const cart = GetCart();
+
+                    cartDisplay.innerHTML = "";
+
+                    cart.items.forEach(cartItem => {
+                        //Div for each item in cart
+                        const card = document.createElement("div");
+                        card.classList.add("flex", "bg-white", "rounded-lg", "shadow-md", "p-4", "items-center");
+
+                        //Item's image and styling
+                        const img = document.createElement("img");
+                        img.src = cartItem.image;
+                        img.alt = cartItem.name;
+                        img.classList.add("w-24", "h-24", "object-cover", "rounded-lg", "mr-4");
+
+                        //Container for card's information
+                        const container = document.createElement("div");
+                        container.classList.add("flex-grow");
+
+                        //P tag for name of item and styling
+                        const name = document.createElement("p");
+                        name.textContent = cartItem.name;
+                        name.classList.add("text-lg", "font-bold", "mb-1");
+
+                        //P tag for price of item and styling
+                        const price = document.createElement("p");
+                        price.textContent = "Price: $" + cartItem.price.toFixed(2);
+                        price.classList.add("text-gray-700");
+
+                        //P tag for quantity of item and styling
+                        const quantity = document.createElement("p");
+                        quantity.textContent = "Quantity: " + cartItem.quantity;
+                        quantity.classList.add("text-gray-700");
+
+                        //Assemble card
+                        container.appendChild(name);
+                        container.appendChild(price);
+                        container.appendChild(quantity);
+                        card.appendChild(img);
+                        card.appendChild(container);
+
+                        //Remove button on each card and styling
+                        const removeBtn = document.createElement("button");
+                        removeBtn.textContent = "Remove";
+                        removeBtn.onclick = () => {
+                            RemoveFromCart(cartItem);
+                        };
+                        removeBtn.classList.add("bg-red-500", "text-white", "px-3", "py-1", "rounded", "hover:bg-red-600", "ml-4");
+                        card.appendChild(removeBtn);
+
+                        cartDisplay.appendChild(card);
+                    });
+
+                    //Also update the total every time the cart is modified
+                    const totalElement = document.getElementById("cart-total");
+                    totalElement.textContent = cart.total
+                }
+
+                function UpdateCartLink() {
+                    const cart = GetCart();
+                    const cartLink = document.getElementById("cart-link");
+                    cartLink.textContent = `Cart (${GetCartQuantity()})`;
+                }
+
+                //Load cart quantity
+                document.addEventListener("DOMContentLoaded", () => {
+                    UpdateCartLink();
+                });
+
+                //Load cart with page
+                document.addEventListener("DOMContentLoaded", () => {
+                    UpdateCartDisplay();
+                });
+
+
+            </script>
+        </div>
+
+        <div class="w-1/3 h-full p-4 flex flex-col">
+            <div class="text-xl w-full text-center p-8 flex-grow sm:flex-grow-0 sm:h-1/4">
+                Total: $<span id="cart-total"></span>
+            </div>
+            <button
+                class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 w-full flex-grow sm:flex-grow-0 sm:h-1/4">
+                Proceed to Checkout
+            </button>
+            <div class="flex w-full justify-center">
+                <button
+                    class="inline-block bg-red-200 rounded-full px-6 py-2 sm:text-lg text-center text-md font-semibold text-blue-500 hover:bg-white transition duration-300 flex-grow sm:flex-grow-0 sm:h-1/4"
+                    onclick="ClearCart()">Clear Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-red-50 w-screen h-8 fixed bottom-0 right-0 p-2 flex flex-row items-end justify-end">
+        <div class="flex space-x-4"> <a href="https://izu-animal-kingdom.com/en/">
+                <img class="h-4 w-full object-cover max-w-full rounded-lg" src="./pictures/website.png">
+            </a>
+            <a href="https://x.com/izu_anikin">
+                <img class="h-4 w-full object-cover max-w-full rounded-lg" src="./pictures/twitter.png">
+            </a>
+            <a href="https://www.instagram.com/animalkingdom_official">
+                <img class="h-4 w-full object-cover max-w-full rounded-lg" src="./pictures/instagram.png">
+            </a>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
